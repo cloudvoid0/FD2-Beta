@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import Navbar from './components/Navbar';
+import Homepage from './components/Homepage';
+import AboutUs from './components/AboutUs';
+import HowItWorks from './components/HowItWorks';
+import DonateFood from './components/DonateFood';
+import ObtainFood from './components/ObtainFood';
+import AdminDashboard from './components/AdminDashboard';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Navbar />
+      <Routes>
 
-export default App
+        {/* User routes */}
+        <Route path="/" element={<Homepage />} />
+        <Route path="/donate-food" element={<DonateFood />} />
+        <Route path="/obtain-food" element={<ObtainFood />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/top-donors" element={<h1>Top Donors Page (To Be Developed)</h1>} />
+        <Route path="/get-started" element={<h1>Get Started Page (To Be Developed)</h1>} />
+        <Route path="/account" element={<h1>Accounts Page (To Be Developed)</h1>} />
+
+        {/* Admin routes */}
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/view-donations" element={<div>View Donations Page</div>} />
+        <Route path="/manage-users" element={<div>Manage Users Page</div>} />
+        <Route path="/track-analytics" element={<div>Track Analytics Page</div>} />
+        <Route path="/settings" element={<div>Settings Page</div>} />
+
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
+
